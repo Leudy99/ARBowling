@@ -5,6 +5,7 @@ public class BallAimController : MonoBehaviour
     [Header("References")]
     public BallLauncher ballLauncher;
     public Camera mainCamera;
+    public ARPlacementManager placementManager;
 
     [Header("Arrow Objects")]
     public GameObject rightArrow;
@@ -66,6 +67,12 @@ public class BallAimController : MonoBehaviour
 
     void Update()
     {
+        if (placementManager != null && !placementManager.placementLocked)
+        {
+            HideAim();
+            return;
+        }
+
         if (ballLauncher == null || ballLauncher.HasLaunched())
             return;
 
